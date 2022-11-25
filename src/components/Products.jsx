@@ -5,18 +5,30 @@ import { getProducts } from '../services/api'
 import { useState } from 'react'
 import SwitchMaxItems from './SwitchMaxItems'
 import Skeleton from './Skeleton'
+import ProductDetail from './ProductDetail'
 
 const Products = () => {
   const [maxItems, setMaxItems] = useState(4)
   const { isLoading, error, data } = useQuery({ queryKey: ['products', maxItems], queryFn: () => getProducts(maxItems)})
-
   const handleMaxItems = (item) => {
     setMaxItems(item)
   }
+
+  const [openModal, setOpenModal] = useState(false)
+  const [dataModal, setDataModal] = useState(null)
+  const handleOpenModal = (id) => {
+    setDataModal(data?.products.find(item => item.id === id))
+    setOpenModal(true)
+  }
+  const handleCloseModal = () => {
+    setOpenModal(false)
+  }
+
   if (error) return 'An error has occurred: ' + error.message
 
   return (
     <>
+        <ProductDetail show={openModal} product={dataModal} onClose={handleCloseModal}/>
         <div className="container mt-10 mb-20">
             <div className='flex justify-between items-center'>
                 <h1 className='text-md mt-10 mb-10 flex items-center gap-2 text-gray-600'><ListBulletIcon className='w-5'/> <span>Products</span></h1>
@@ -41,8 +53,8 @@ const Products = () => {
                         <Skeleton height='400px'/>
                     </>
                     :
-                    data?.products.map(({images, title, brand}) => (
-                        <Card key={title} className="custom-box hover:cursor-pointer h-[400px]">
+                    data?.products.map(({id, images, title, brand}) => (
+                        <Card key={title} className="custom-box hover:cursor-pointer h-[400px]" onClick={() => handleOpenModal(id)}>
                             <div className='h-1/2 flex justify-center items-center'>
                                 <img src={images[0]} alt={title} className="h-1/2" />
                             </div>
