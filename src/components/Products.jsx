@@ -1,10 +1,17 @@
 import { useQuery } from '@tanstack/react-query'
-import { Card, Dropdown } from 'flowbite-react'
+import { Card } from 'flowbite-react'
 import { ListBulletIcon } from '@heroicons/react/24/solid'
 import { getProducts } from '../services/api'
+import { useState } from 'react'
+import SwitchMaxItems from './SwitchMaxItems'
 
 const Products = () => {
-  const { isLoading, error, data } = useQuery({ queryKey: ['products'], queryFn: getProducts})
+  const [maxItems, setMaxItems] = useState(4)
+  const { isLoading, error, data } = useQuery({ queryKey: ['products', maxItems], queryFn: () => getProducts(maxItems)})
+
+  const handleMaxItems = (item) => {
+    setMaxItems(item)
+  }
 
   if (isLoading) return 'Loading...'
   if (error) return 'An error has occurred: ' + error.message
@@ -13,14 +20,11 @@ const Products = () => {
         <div className="container mt-10 mb-20">
             <div className='flex justify-between items-center'>
                 <h1 className='text-md mt-10 mb-10 flex items-center gap-2 text-gray-600'><ListBulletIcon className='w-5'/> <span>Products</span></h1>
-                <Dropdown
-                    label="Show: 4"
-                    inline={true}
-                >
-                    <Dropdown.Item>
-                        4
-                    </Dropdown.Item>
-                </Dropdown>
+                <SwitchMaxItems
+                    total={data.total}
+                    maxItems={maxItems}
+                    handleMaxItems={handleMaxItems}
+                />
             </div>
             
             <div className='grid grid-cols-4 gap-4'>
