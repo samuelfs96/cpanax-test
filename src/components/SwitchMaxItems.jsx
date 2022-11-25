@@ -21,13 +21,11 @@ const SwitchMaxItems = ({
         inline={true}
         className="overflow-auto max-h-60"
     >
-        {
-            totalItems().map((item) => (
-                <Dropdown.Item key={item} onClick={() => handleMaxItems(item)}>
-                    {item}
-                </Dropdown.Item>
-            ))
-        }
+        {totalItems().map((item) => (
+            <Dropdown.Item key={item} onClick={() => handleMaxItems(item)}>
+                {item}
+            </Dropdown.Item>
+        ))}
     </Dropdown>
   )
 }
