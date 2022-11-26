@@ -5,10 +5,10 @@ import { getProducts } from '../services/api'
 import { useMemo } from 'react'
 import { useModal } from '../hooks/useModal'
 import { usePagination } from '../hooks/usePagination'
-import SwitchMaxItems from './SwitchMaxItems'
-import Skeleton from './Skeleton'
-import ProductDetail from './ProductDetail'
-import ErrorPage from '../pages/ErrorPage'
+import SwitchMaxItems from '../components/SwitchMaxItems'
+import Skeleton from '../components/Skeleton'
+import ProductDetail from '../components/ProductDetail'
+import ErrorPage from './ErrorPage'
 
 const Products = () => {
   /*--- Hooks, helpers, variables, etc ---*/
