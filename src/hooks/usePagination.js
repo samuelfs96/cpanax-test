@@ -15,10 +15,10 @@ export const usePagination = ({
         setCurrentPage(page)
     }
 
-    return [
+    return {
         maxItems,
         currentPage,
         onChangeMaxItems,
         onPageChange
-    ]
+    }
 }
