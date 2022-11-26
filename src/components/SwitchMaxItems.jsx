@@ -1,5 +1,5 @@
 import { Dropdown } from 'flowbite-react'
-import React, { useCallback } from 'react'
+import React, { useMemo } from 'react'
 
 const SwitchMaxItems = ({
     total,
@@ -7,7 +7,7 @@ const SwitchMaxItems = ({
     handleMaxItems
 }) => {
 
-  const totalItems = useCallback(() => {
+  const totalItems = useMemo(() => {
     const items = []
     for (let index = 1; index <= total; index++) {
         items.push(index);
@@ -21,7 +21,7 @@ const SwitchMaxItems = ({
         inline={true}
         className="overflow-auto max-h-60"
     >
-        {totalItems().map((item) => (
+        {totalItems.map((item) => (
             <Dropdown.Item key={item} onClick={() => handleMaxItems(item)}>
                 {item}
             </Dropdown.Item>
