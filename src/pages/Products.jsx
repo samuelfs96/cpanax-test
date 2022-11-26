@@ -12,10 +12,10 @@ import ErrorPage from './ErrorPage'
 
 const Products = () => {
   /*--- Hooks, helpers, variables, etc ---*/
-  const [ maxItems, currentPage, onChangeMaxItems, onPageChange ] = usePagination({initialPage: 1, initialMaxPage: 4})
+  const { maxItems, currentPage, onChangeMaxItems, onPageChange } = usePagination({initialPage: 1, initialMaxPage: 4})
   const skip = useMemo(() => maxItems * (currentPage - 1), [currentPage, maxItems])
   const { isLoading, error, data } = useQuery({ queryKey: ['products', maxItems, skip], queryFn: () => getProducts(maxItems, skip)})
-  const [ openModal, handleOpenModal, handleCloseModal, dataModal ] = useModal(data?.products)
+  const { openModal, handleOpenModal, handleCloseModal, dataModal } = useModal(data?.products)
   
   if (error) return <ErrorPage error={error}/>
   return (
@@ -31,7 +31,7 @@ const Products = () => {
                     <> 
                         <Skeleton height='400px'/><Skeleton height='400px'/><Skeleton height='400px'/><Skeleton height='400px'/> 
                     </>
-                    : data?.products.map(({id, images, title, brand}) => (
+                    : data?.products?.map(({id, images, title, brand}) => (
                         <Card key={title} className="custom-box hover:cursor-pointer h-[400px]" onClick={() => handleOpenModal(id)}>
                             <div className='h-1/2 flex justify-center items-center'>
                                 <img src={images[0]} alt={title} className="h-1/2" />
@@ -43,16 +43,20 @@ const Products = () => {
                         </Card>))
                 }
             </div>
-            {!isLoading && (<div className='custom-pagination'>
-                                <hr className='mt-8 mb-8'/>
-                                <Pagination
-                                    className='text-center'
-                                    currentPage={currentPage}
-                                    onPageChange={onPageChange}
-                                    showIcons={true}
-                                    totalPages={Math.ceil(data?.total / maxItems)}
-                                />
-                            </div>)}
+            <div className='custom-pagination'>
+                <hr className='mt-8 mb-8'/>
+                <div className='flex justify-center'>
+                    {isLoading ? <div className='w-[400px] max-lg:w-full'><Skeleton height='38px'/></div> : 
+                        <Pagination
+                            className='text-center'
+                            currentPage={currentPage}
+                            onPageChange={onPageChange}
+                            showIcons={true}
+                            totalPages={Math.ceil(data?.total / maxItems)}
+                        />
+                    }
+                </div>
+            </div>
         </div>
     </>
   )
