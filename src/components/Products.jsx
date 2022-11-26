@@ -12,7 +12,7 @@ import ErrorPage from '../pages/ErrorPage'
 
 const Products = () => {
   /*--- Hooks, helpers, variables, etc ---*/
-  const [ maxItems, currentPage, onChangeMaxItems, onPageChange ] = usePagination()
+  const [ maxItems, currentPage, onChangeMaxItems, onPageChange ] = usePagination({initialPage: 1, initialMaxPage: 4})
   const skip = useMemo(() => maxItems * (currentPage - 1), [currentPage, maxItems])
   const { isLoading, error, data } = useQuery({ queryKey: ['products', maxItems, skip], queryFn: () => getProducts(maxItems, skip)})
   const [ openModal, handleOpenModal, handleCloseModal, dataModal ] = useModal(data?.products)

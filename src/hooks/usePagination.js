@@ -1,8 +1,11 @@
 import { useState } from "react"
 
-export const usePagination = () => {
-    const [maxItems, setMaxItems] = useState(4)
-    const [currentPage, setCurrentPage] = useState(1)
+export const usePagination = ({
+    initialPage,
+    initialMaxPage
+}) => {
+    const [maxItems, setMaxItems] = useState(initialMaxPage)
+    const [currentPage, setCurrentPage] = useState(initialPage)
 
     const onChangeMaxItems = (item) => {
         setCurrentPage(1)
