@@ -15,14 +15,14 @@ const Layout = () => {
                 </span>
             </Navbar.Brand>
             <Navbar.Toggle/>
-          <Navbar.Collapse>
-            <li className="font-normal text-gray-500 hover:text-gray-700 transition-all"> 
+          <Navbar.Collapse className="text-center">
+            <li className="font-normal text-gray-500 hover:text-gray-700 transition-all max-md:p-2 max-md:border-b"> 
               <NavLink to="/products">Products</NavLink>
             </li>
-            <li className="font-normal text-gray-500 hover:text-gray-700 transition-all"> 
+            <li className="font-normal text-gray-500 hover:text-gray-700 transition-all max-md:p-2 max-md:border-b"> 
               <NavLink to="/users">Users</NavLink>
             </li>
-            <li className="font-normal text-gray-500 hover:text-gray-700 transition-all"> 
+            <li className="font-normal text-gray-500 hover:text-gray-700 transition-all max-md:p-2"> 
               <NavLink to="/flow">Flow</NavLink>
             </li>
           </Navbar.Collapse>
