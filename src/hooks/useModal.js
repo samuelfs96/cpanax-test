@@ -15,10 +15,10 @@ export const useModal = (data) => {
         setOpenModal(false)
     }
 
-    return [
+    return {
         openModal,
         handleOpenModal,
         handleCloseModal,
         dataModal
-    ]
+    }
 }
