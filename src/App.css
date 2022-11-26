@@ -1,4 +1,4 @@
-.custom-pagination > nav > ul{
+.custom-pagination > div > nav > ul{
     flex-wrap: wrap;
     justify-content: end;
 }
