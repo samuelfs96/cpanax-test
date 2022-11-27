@@ -10,9 +10,9 @@ const Layout = () => {
         className="bg-slate-50 shadow-sm"
       >
         <Navbar.Brand href="#">
-          <span className="text-md">
+          <NavLink to="/" className="text-md">
               Frontend Test
-          </span>
+          </NavLink>
         </Navbar.Brand>
         <Navbar.Toggle/>
         <Navbar.Collapse className="text-center">
