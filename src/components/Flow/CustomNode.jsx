@@ -1,8 +1,16 @@
-import { memo } from 'react';
+import { CodeBracketSquareIcon, CodeBracketIcon, DocumentTextIcon } from '@heroicons/react/24/solid';
+import { memo, useCallback } from 'react';
 import { Handle } from 'reactflow';
 import { colors } from '../../utils/nodeColors';
 
 const CustomNode = memo(({ data, isConnectable }) => {
+
+  const Icon = useCallback(() => {
+    if(data.type === 'page') return <DocumentTextIcon className="w-7 text-white"/>
+    if(data.type === 'element') return <CodeBracketSquareIcon className="w-7 text-white"/>
+    if(data.type === 'element-item') return <CodeBracketIcon className="w-7 text-white"/>
+  }, [data.type])
+
   return (
     <>
       <Handle
@@ -21,7 +29,8 @@ const CustomNode = memo(({ data, isConnectable }) => {
       />
         {data.type && (
           <div className='border-gray-300 border-[1px] rounded-xl overflow-hidden w-[250px]'>
-              <div className={`${colors[data.type]} p-2`}>
+              <div className={`${colors[data.type]} p-2 flex gap-2 items-center`}>
+                <Icon />
                 <input type="text" className='titleinput font-bold text-xl text-white bg-transparent border-none w-full p-0' 
                   defaultValue={data.title}
                   onChange={(ev) => data.onChangeTitle(ev, data.id)}
