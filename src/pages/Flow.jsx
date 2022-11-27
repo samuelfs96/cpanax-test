@@ -25,7 +25,9 @@ const Flow = () => {
     onEdgesChange,
     onNodesChange,
     setReactFlowInstance,
-    reactFlowWrapper
+    reactFlowWrapper,
+    onResetConnections,
+    onResetNodes
   } = useFlow({initialData: dataFlow})
 
   return (
@@ -49,7 +51,10 @@ const Flow = () => {
             <Controls />
             <Background/>
           </ReactFlow>
-          <SidebarFlow/>
+          <SidebarFlow
+            onResetConnections={onResetConnections}
+            onResetNodes={onResetNodes}
+          />
         </div>
     </div>
   )

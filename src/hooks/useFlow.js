@@ -93,6 +93,14 @@ export const useFlow = ({initialData}) => {
     [reactFlowInstance, setNodes, onChangeTitle, onChangeSubtitle]
   );
 
+  const onResetConnections = useCallback(() => {
+    setEdges([])
+  }, [setEdges])
+
+  const onResetNodes = useCallback(() => {
+    setNodes([])
+  }, [setNodes])
+
   useEffect(() => {
     const data = initialData.map((data, index) => ({
       id: data.id,
@@ -118,6 +126,8 @@ export const useFlow = ({initialData}) => {
     onDrop,
     reactFlowWrapper,
     nodeTitle,
-    nodeSubTitle
+    nodeSubTitle,
+    onResetConnections,
+    onResetNodes
   }
 }
