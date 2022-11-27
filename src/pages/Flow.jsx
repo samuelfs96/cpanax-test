@@ -7,6 +7,7 @@ import 'reactflow/dist/style.css';
 import Sidebar from '../components/Flow/Sidebar';
 import CustomNode from '../components/Flow/CustomNode';
 import { useFlow } from '../hooks/useFlow'
+import dataFlow from '../dataFlow.json'
 
 const nodeTypes = {
   'page': CustomNode,
@@ -25,7 +26,8 @@ const Flow = () => {
     onNodesChange,
     setReactFlowInstance,
     reactFlowWrapper
-  } = useFlow()
+  } = useFlow({initialData: dataFlow})
+
   return (
     <div className="container mt-10 mb-20">
         <div className='flex justify-between items-center mb-6 mt-6'>
