@@ -22,7 +22,7 @@ const CustomNode = memo(({ data, isConnectable }) => {
         {data.type && (
           <div className='border-gray-300 border-[1px] rounded-xl overflow-hidden w-[250px]'>
               <div className={`${colors[data.type]} p-2`}>
-                <input type="text" className='font-bold text-xl text-white bg-transparent border-none w-full p-0' 
+                <input type="text" className='titleinput font-bold text-xl text-white bg-transparent border-none w-full p-0' 
                   defaultValue={data.title}
                   onChange={(ev) => data.onChangeTitle(ev, data.id)}
                   placeholder="Write here..."/>

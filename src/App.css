@@ -30,3 +30,16 @@
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
 }
+
+.titleinput::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1; /* Firefox */
+}
+
+.titleinput:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: white;
+}
+
+.titleinput::-ms-input-placeholder { /* Microsoft Edge */
+    color: white;
+}
