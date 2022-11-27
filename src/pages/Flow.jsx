@@ -4,10 +4,10 @@ import ReactFlow, {
   Background
 } from 'reactflow';
 import 'reactflow/dist/style.css';
-import Sidebar from '../components/Flow/Sidebar';
 import CustomNode from '../components/Flow/CustomNode';
 import { useFlow } from '../hooks/useFlow'
 import dataFlow from '../dataFlow.json'
+import SidebarFlow from '../components/Flow/SidebarFlow';
 
 const nodeTypes = {
   'page': CustomNode,
@@ -49,7 +49,7 @@ const Flow = () => {
             <Controls />
             <Background/>
           </ReactFlow>
-          <Sidebar/>
+          <SidebarFlow/>
         </div>
     </div>
   )
